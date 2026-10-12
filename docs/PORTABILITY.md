@@ -41,4 +41,4 @@ Quarterly         restore drill: git clone <repo>.bundle  — confirm it opens w
 
 ## What never leaves the private engine
 
-Mirrors and backups copy what already exists. Private repos are backed up to **your** encrypted storage only and are never mirrored to a third-party host. The Rhino 2B boundary (tejas-* skills, engine/governor/changeset, Cockpit internals, agent configs and prompts, INGENIUM, dental and client modules) applies to every copy.
+Mirrors and backups copy what already exists. Private repos are backed up to **your** encrypted storage only and are never mirrored to a third-party host. The private-engine boundary (engine code, agent configurations and prompts, internal tooling, client and clinical modules) applies to every copy.

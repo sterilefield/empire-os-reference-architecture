@@ -10,7 +10,7 @@
 
 ## Why it works on small hardware
 
-- The gate runs on the seat, not the control plane, so production memory is never spent on testing.
+- The gate runs on the seat, not the control plane, so testing does not compete with production for memory.
 - Releases are small; seven releases in three days kept each change reviewable.
 - Rollback is "keep the previous tag running", which needs no extra infrastructure.
 

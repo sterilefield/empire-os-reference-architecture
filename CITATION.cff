@@ -7,5 +7,3 @@ authors:
     given-names: "Ravi Teja"
 repository-code: "https://github.com/sterilefield/empire-os-reference-architecture"
 version: "0.1.0"
-date-released: "YYYY-MM-DD"
-# license: set at the go-public gate (G-Q9, option A)

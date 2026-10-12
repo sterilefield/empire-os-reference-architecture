@@ -15,7 +15,7 @@
 - Output is a branch plus an evidence file, never a change to production.
 
 ### Tier 2 — Control plane (Mac mini, 8 GB)
-- **Gateway:** routes work to 9 governed agents (orchestration, research, engineering lead, job pipeline, education planning, monetisation, communications, site reliability triage, records and audit).
+- **Gateway:** routes work to 9 governed agents covering orchestration, research, engineering, operations, communications, reliability triage, and records and audit.
 - **Governor:** a RAM budget per process; non-urgent jobs are deferred under pressure instead of risking the host.
 - **Kill switch:** freezes agent processes on command.
 - **Approvals:** risky actions wait for a human, by tier.
@@ -35,16 +35,16 @@ Git hosting for code and releases, encrypted off-site backups, a private Tailsca
 | Rule | Why |
 |---|---|
 | Client data never leaves the client node | Privacy (DPDP), blast radius |
-| One writer per data store | Removes concurrency bugs on small hardware |
-| Secrets live in the OS keychain or a secret reference, never in files | Leaks via git or logs become impossible by construction |
+| One writer per data store | Avoids a whole class of concurrency bugs on small hardware |
+| Secrets live in the OS keychain or a secret reference, never in files | Reduces the risk of leaks via git or logs |
 | Backups are encrypted before they leave the machine | Free cloud storage is treated as untrusted |
 
 ## Failure modes designed for
 
 | Failure | Response |
 |---|---|
-| Memory pressure | Governor defers non-urgent work; urgent paths keep a reserved budget |
+| Memory pressure | Governor defers non-urgent work so urgent paths keep running |
 | Runaway agent | Kill switch; approval tiers stop high-risk actions before they run |
 | Bad release | Gate blocks the tag; previous release stays live |
 | Host loss | Rebuild from the latest SHA-verified capsule (127 GB drill, zero data loss) |
-| Provider outage | Each free-cloud role has a documented alternative |
+| Provider outage | Each free-cloud role is chosen so that it can be swapped for an alternative |

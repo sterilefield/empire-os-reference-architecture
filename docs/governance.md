@@ -28,7 +28,7 @@ An action runs only when its agent's autonomy level allows it **and** its risk c
 
 - **Kill switch** — one command freezes agent processes; resuming is a deliberate owner action.
 - **Append-only audit log** — approvals, changes and releases are recorded and never edited in place.
-- **Budgets** — every agent has token, time and memory budgets; overruns are deferred or stopped, never silently extended.
+- **Budgets** — agents are designed to run within token, time and memory budgets; overruns are deferred or stopped rather than silently extended.
 - **Separation of duties** — the agent that writes code is not the one that reviews it, and neither can tag a release.
 
 ## Standards mapping

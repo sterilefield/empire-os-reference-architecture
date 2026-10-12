@@ -2,7 +2,7 @@
 
 **How one person runs 9 governed AI agents on a 2012 Mac mini with 8 GB of RAM — and ships seven test-gated releases in three days.**
 
-This repository documents the *architecture* of Tejas Empire OS, a self-hosted multi-agent AI operating system in daily production since 2026. It is a reference, not the engine: it explains the tiers, the governance model, the release process and the trade-offs, so you can apply the patterns to your own system. No engine code, agent prompts, configurations, client data or credentials are published here.
+This repository documents the *architecture* of Empire OS, a self-hosted multi-agent AI operating system in daily production use. It is a reference, not the engine: it explains the tiers, the governance model, the release process and the trade-offs, so you can apply the patterns to your own system. No engine code, agent prompts, configurations, client data or credentials are published here.
 
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sterilefield/empire-os-reference-architecture/badge)](https://scorecard.dev/viewer/?uri=github.com/sterilefield/empire-os-reference-architecture)
 
@@ -13,7 +13,7 @@ This repository documents the *architecture* of Tejas Empire OS, a self-hosted m
 | Governed agents in production | 9 | live fleet, release notes |
 | Commits (Oct 2026) | 626 | private repository history |
 | Releases | 7 in 3 days (v1.0.0 → v1.2.1) | tagged releases |
-| Release-gate suites | 87 / 87 green before every tag | gate report |
+| Release-gate suites | 87 / 87 green at v1.2.1 | gate report |
 | Cockpit tests | 841 | test run |
 | Control-plane host | 2012 Mac mini, 8 GB RAM | — |
 | Heartbeat tokens | 12.0 M → 1.0 M a day (−91%) | token telemetry |
@@ -91,7 +91,7 @@ Architecture decisions are recorded as ADRs in [docs/adr/](docs/adr/):
 
 ## What is deliberately not here
 
-The engine, the governor's implementation, agent prompts and configurations, internal dashboards, and every client or clinical module stay private. This repository passed the five-gate [Sterile Field](https://github.com/sterilefield) release check: allow-list, secret and deny-list scan, fresh history, independent review, owner gate.
+The engine, the governor's implementation, agent prompts and configurations, internal dashboards, and every client or clinical module stay private. This repository is released through the five-gate [Sterile Field](https://github.com/sterilefield) release check: allow-list, secret and deny-list scan, fresh history, independent review, owner gate.
 
 ## Author
 

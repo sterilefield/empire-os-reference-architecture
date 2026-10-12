@@ -1,7 +1,7 @@
 # ADR-002: The control plane observes client systems but never writes to them
 
 - **Status:** accepted
-- **Date:** 2026
+- **Date:** 2026-10
 
 ## Context
 Client platforms hold client data and serve the client's customers. A shared control plane with write access would put every client inside one blast radius and complicate data-protection duties.

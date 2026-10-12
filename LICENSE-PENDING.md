@@ -3,7 +3,7 @@
 This repository is not yet licensed. Until a LICENSE file is added, all rights are
 reserved by Dr. Ravi Teja Thiriveedhi.
 
-**Owner reminder (G-Q9, option A).** Before this repository is made public, review and
+**Owner reminder.** Before this repository is made public, review and
 confirm its licence:
 
 | Repo type | Planned licence |
@@ -14,4 +14,4 @@ confirm its licence:
 | Awesome list | CC0 1.0 |
 
 When confirmed: add the matching LICENSE file, set `license:` in CITATION.cff, delete
-this file, and record the decision in the asset register.
+this file.

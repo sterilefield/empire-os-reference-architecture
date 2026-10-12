@@ -7,9 +7,9 @@ GitHub is the **showroom**, not the vault. Everything here can move to Codeberg,
 | # | Rule | How this repo follows it |
 |---|---|---|
 | 1 | **Git is the source of truth** | All content is Markdown, Mermaid, SVG, YAML or code — plain files any host renders |
-| 2 | **Checks live in scripts, not in CI files** | `scripts/check.sh` runs every gate on a laptop or any CI; `.github/workflows/ci.yml` is a 3-line wrapper |
+| 2 | **Checks live in scripts, not in CI files** | `scripts/check.sh` runs every gate on a laptop or any CI; `.github/workflows/ci.yml` is a thin wrapper |
 | 3 | **Only free, open-source tools** | gitleaks (MIT), lychee (MIT/Apache), age (BSD). No paid GitHub features, no licence keys |
-| 4 | **GitHub-only data is exported weekly** | `scripts/backup-github.sh` saves issues, PRs, reviews, releases, assets, discussions, labels, wikis as JSON + git bundles |
+| 4 | **GitHub-only data is exported weekly** | The maintainer's backup script (kept outside public repos) saves issues, PRs, reviews, releases, assets, discussions, labels, wikis as JSON + git bundles |
 | 5 | **A second live copy exists** | `.github/workflows/mirror.yml` push-mirrors public repos to Codeberg or GitLab.com (free) once two secrets are added |
 
 ## What is GitHub-specific here, and its exit
@@ -26,7 +26,7 @@ GitHub is the **showroom**, not the vault. Everything here can move to Codeberg,
 ## The weekly routine (runs on your own machine, no GitHub dependency)
 
 ```text
-Sunday 03:00 IST  scripts/backup-github.sh  →  ~/github-backups/<stamp>.tar.gz(.age)
+Sunday 03:00 IST  maintainer backup script  →  ~/github-backups/<stamp>.tar.gz(.age)
                   →  copy to encrypted Drive (your existing off-site copy)
                   →  keep 8 weekly + 6 monthly; verify SHA256SUMS on the newest
 Quarterly         restore drill: git clone <repo>.bundle  — confirm it opens without GitHub

@@ -1,7 +1,7 @@
 # ADR-001: Run the control plane on an 8 GB machine, on purpose
 
 - **Status:** accepted
-- **Date:** 2026
+- **Date:** 2026-10
 
 ## Context
 The control plane hosts the agent gateway, governor, approvals, telemetry and backups. The available always-on machine is a 2012 Mac mini with 8 GB of RAM. Buying new hardware or renting cloud servers adds recurring cost and a new dependency.

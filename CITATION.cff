@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Empire OS reference architecture: governed multi-agent AI on constrained hardware"
+type: software
+authors:
+  - family-names: "Thiriveedhi"
+    given-names: "Ravi Teja"
+repository-code: "https://github.com/sterilefield/empire-os-reference-architecture"
+version: "0.1.0"
+date-released: "YYYY-MM-DD"
+# license: set at the go-public gate (G-Q9, option A)

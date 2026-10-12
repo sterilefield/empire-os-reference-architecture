@@ -26,7 +26,7 @@ if ! command -v lychee >/dev/null; then
   l_arch=$([ "$arch" = arm64 ] && echo aarch64 || echo x86_64)
   curl -sSfL "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/lychee-${l_arch}-unknown-linux-gnu.tar.gz" 2>/dev/null | tar -xz -C "$BIN" lychee 2>/dev/null || echo "lychee not installed; skipping link check"
 fi
-command -v lychee >/dev/null && lychee --no-progress --exclude-path README.template.md './**/*.md'
+command -v lychee >/dev/null && lychee --no-progress ${LYCHEE_OFFLINE:+--offline} --exclude-path README.template.md './**/*.md'
 
 step "4/4 project tests"
 if [ -f package.json ]; then npm ci && npm test; fi

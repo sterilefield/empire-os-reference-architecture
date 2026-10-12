@@ -23,18 +23,18 @@ GitHub is the **showroom**, not the vault. Everything here can move to Codeberg,
 | Profile README / org `.github` | A static page (GitHub Pages output is plain HTML — host on Codeberg Pages or any static host) | An hour |
 | Social preview, pins, contribution graph | Cosmetic; rebuilt from the same SVG assets | — |
 
-## The weekly routine (runs on the M3 lane, no GitHub dependency)
+## The weekly routine (runs on your own machine, no GitHub dependency)
 
 ```text
 Sunday 03:00 IST  scripts/backup-github.sh  →  ~/github-backups/<stamp>.tar.gz(.age)
-                  →  copy to encrypted Drive (already in Empire OS tier 5)
+                  →  copy to encrypted Drive (your existing off-site copy)
                   →  keep 8 weekly + 6 monthly; verify SHA256SUMS on the newest
 Quarterly         restore drill: git clone <repo>.bundle  — confirm it opens without GitHub
 ```
 
 ## One-time owner setup (free)
 
-1. **Read-only backup token:** fine-grained token, all repos, permissions *Contents, Issues, Pull requests, Discussions, Metadata: read-only*. Stored only in the M3 keychain or Rhino SecretRef — never in a file.
+1. **Read-only backup token:** fine-grained token, all repos, permissions *Contents, Issues, Pull requests, Discussions, Metadata: read-only*. Stored only in the OS keychain or a secret store — never in a file.
 2. **Mirror host:** a Codeberg or GitLab.com account → create empty repos with the same names → access token with write to those repos → add `MIRROR_URL` and `MIRROR_TOKEN` as repo secrets on the public showcase repos only.
 3. **Encryption key (optional):** `age-keygen -o ~/.config/age/key.txt` → put the public `age1…` key in `AGE_RECIPIENT`. Keep the private key offline (password manager or printed).
 4. **GitHub's own export (twice a year):** Settings → Account → *Export account data* — a second, independent copy produced by GitHub itself.

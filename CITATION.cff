@@ -7,3 +7,4 @@ authors:
     given-names: "Ravi Teja"
 repository-code: "https://github.com/sterilefield/empire-os-reference-architecture"
 version: "0.1.0"
+license: CC-BY-NC-ND-4.0

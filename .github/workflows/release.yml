@@ -15,7 +15,7 @@ jobs:
           git archive --format=tar.gz -o "${GITHUB_REPOSITORY#*/}-${GITHUB_REF_NAME}.tar.gz" HEAD
       - uses: anchore/sbom-action@v0
         with: { format: spdx-json, output-file: sbom.spdx.json }
-      - uses: actions/attest-build-provenance@v2
+      - uses: actions/attest-build-provenance@v4
         with: { subject-path: "*.tar.gz" }
       - name: Create release with generated notes
         env: { GH_TOKEN: "${{ github.token }}" }

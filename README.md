@@ -100,4 +100,4 @@ The engine, the governor's implementation, agent prompts and configurations, int
 
 ## Licence
 
-Documentation in this repository is licensed under [CC BY-NC-ND 4.0](LICENSE): share it with credit, no commercial use, no derivatives. The scripts in `scripts/` are small helpers you may reuse.
+Documentation in this repository is licensed under [CC BY-NC-ND 4.0](LICENSE): share it with credit, no commercial use, no derivatives.

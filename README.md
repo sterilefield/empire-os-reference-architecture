@@ -60,8 +60,8 @@ Full detail: [docs/architecture.md](docs/architecture.md).
 
 | Control | What it does |
 |---|---|
-| Autonomy levels L0–L4 | Each agent action is classed from "suggest only" to "act and report". |
-| Risk classes R0–R4 | Higher risk needs a human approval tier before it runs. |
+| Autonomy levels L0–L4 | Agents run from L0 Observer to L3 Delegate; L4 Autonomous is deliberately unused. |
+| Risk classes R0–R4 | From R0 read-only to R4 external sends, money, clinical, deletion or secrets, which need the owner every time. |
 | Kill switch | Freezes agent processes from a messaging command or the CLI. |
 | Append-only audit log | Records every approval, change and release. |
 | RAM governor | Defers non-urgent work under memory pressure (about 12 deferrals a week, no crashes). |

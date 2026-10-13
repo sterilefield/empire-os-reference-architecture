@@ -17,5 +17,5 @@ especially) are all welcome.
 
 ## Development
 
-See the README's "Run it" section. CI runs a secret scan, a link check and the
-project's tests on every pull request.
+Run `bash scripts/check.sh` before opening a pull request. CI runs the same script:
+a full-history secret scan, a link check and any project tests.

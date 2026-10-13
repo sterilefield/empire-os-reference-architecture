@@ -1,6 +1,6 @@
 # Empire OS — reference architecture
 
-**How one person runs 9 governed AI agents on a 2012 Mac mini with 8 GB of RAM — and ships seven test-gated releases in three days.**
+**How one person runs 9 governed AI agents on a 2012 Mac mini with 8 GB of RAM — and ships test-gated releases: eight in seven days, v1.0.0 → v1.3.0.**
 
 This repository documents the *architecture* of Empire OS, a self-hosted multi-agent AI operating system in daily production use. It is a reference, not the engine: it explains the tiers, the governance model, the release process and the trade-offs, so you can apply the patterns to your own system. No engine code, agent prompts, configurations, client data or credentials are published here.
 
@@ -12,9 +12,10 @@ This repository documents the *architecture* of Empire OS, a self-hosted multi-a
 |---|---|---|
 | Governed agents in production | 9 | live fleet, release notes |
 | Commits (Oct 2026) | 626 | private repository history |
-| Releases | 7 in 3 days (v1.0.0 → v1.2.1) | tagged releases |
-| Release-gate suites | 87 / 87 green at v1.2.1 | gate report |
-| Cockpit tests | 841 | test run |
+| Releases | 8 in 7 days (v1.0.0 → v1.3.0, 13 Oct 2026) | tagged releases |
+| Release-gate suites | 99 / 99 passed at v1.3.0 (gate grew from 48 suites) | promotion report |
+| Automated tests | 1,026 passing, 0 failing (v1.3.0) | test run |
+| Pre-release browser sweep | 116 pages, no priority-1 defects | sweep report |
 | Control-plane host | 2012 Mac mini, 8 GB RAM | — |
 | Heartbeat tokens | 12.0 M → 1.0 M a day (−91%) | token telemetry |
 | Disaster-recovery rebuild | 127 GB SHA-verified capsule, zero data loss | DR drill record |

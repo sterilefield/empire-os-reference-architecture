@@ -96,7 +96,7 @@ The engine, the governor's implementation, agent prompts and configurations, int
 
 ## Author
 
-**Dr. Ravi Teja Thiriveedhi** — clinician turned AI systems architect; 20 years of clinical practice and hospital operations. [GitHub](https://github.com/Raviteja2k2k) · [LinkedIn](https://www.linkedin.com/in/dr-ravi-teja-clinical-ai)
+**Dr. Ravi Teja Thiriveedhi** — clinician turned AI systems architect; 20 years of clinical practice and hospital operations. [GitHub](https://github.com/Raviteja2k2k) · [LinkedIn](https://www.linkedin.com/in/dr-ravi-teja-thiriveedhi)
 
 ## Licence
 

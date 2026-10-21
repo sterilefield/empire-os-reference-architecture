@@ -1,3 +1,8 @@
+<p align="center"><a href="https://sterilefield.github.io/empire-os-reference-architecture/"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/hero-dark.svg">
+  <img alt="Banner: Empire OS — reference architecture, with key figures from this README" src="docs/img/hero-light.svg" width="100%">
+</picture></a></p>
+
 # Empire OS — reference architecture
 
 **How one person runs 9 governed AI agents on a 2012 Mac mini with 8 GB of RAM — and ships test-gated releases: eight in seven days, v1.0.0 → v1.3.0.**
@@ -9,7 +14,13 @@ This repository documents the *architecture* of Empire OS, a self-hosted multi-a
 
 **[Architecture](docs/architecture.md) · [Governance](docs/governance.md) · [Release process](docs/release-process.md) · [ADRs](docs/adr/) · [Trust](TRUST.md) · [All showcases](https://github.com/sterilefield) · [Contact](https://www.linkedin.com/in/dr-ravi-teja-thiriveedhi)**
 
-[![CI](https://github.com/sterilefield/empire-os-reference-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/sterilefield/empire-os-reference-architecture/actions/workflows/ci.yml) [![Live demo](https://img.shields.io/badge/live_demo-open-1a7f37)](https://sterilefield.github.io/empire-os-reference-architecture/) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sterilefield/empire-os-reference-architecture) [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sterilefield/empire-os-reference-architecture/badge)](https://scorecard.dev/viewer/?uri=github.com/sterilefield/empire-os-reference-architecture)
+[![CI](https://github.com/sterilefield/empire-os-reference-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/sterilefield/empire-os-reference-architecture/actions/workflows/ci.yml) [![Live demo](https://img.shields.io/badge/live_demo-open-1a7f37)](https://sterilefield.github.io/empire-os-reference-architecture/) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sterilefield/empire-os-reference-architecture) [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sterilefield/empire-os-reference-architecture/badge)](https://scorecard.dev/viewer/?uri=github.com/sterilefield/empire-os-reference-architecture) [![Latest release](https://img.shields.io/github/v/release/sterilefield/empire-os-reference-architecture?label=release)](https://github.com/sterilefield/empire-os-reference-architecture/releases/latest) [![Attested builds](https://img.shields.io/badge/releases-attested_%2B_SBOM-1a7f37)](#verify-this-release)
+
+### See it in action
+
+<a href="https://sterilefield.github.io/empire-os-reference-architecture/"><img alt="Animated recording of the Control plane playground live demo: real interactions on invented data" src="docs/img/demo.gif" width="100%"></a>
+
+<sub>Recorded from the live demo page with scripted clicks, on invented data. [Open the demo](https://sterilefield.github.io/empire-os-reference-architecture/) to try it yourself.</sub>
 
 ## At a glance
 
@@ -129,11 +140,11 @@ I write the specifications, architecture, acceptance criteria and review gates; 
 
 ## Verify this release
 
-Every release carries a build-provenance attestation for its source archive and an SPDX SBOM.
+Every release carries a build-provenance attestation for its source archive and an SPDX SBOM (the SBOM is attested too from v0.2.0). These commands fetch the latest release:
 
 ```bash
-gh release download v0.1.0 -R sterilefield/empire-os-reference-architecture -p 'empire-os-reference-architecture-v0.1.0.tar.gz'
-gh attestation verify empire-os-reference-architecture-v0.1.0.tar.gz -R sterilefield/empire-os-reference-architecture
+gh release download -R sterilefield/empire-os-reference-architecture -p '*.tar.gz' -p 'sbom.spdx.json'
+gh attestation verify empire-os-reference-architecture-*.tar.gz -R sterilefield/empire-os-reference-architecture
 ```
 
 ## Author

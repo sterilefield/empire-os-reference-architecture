@@ -2,7 +2,7 @@
 import html, pathlib
 
 HEROES = {
-    'empire-os-reference-architecture': dict(eyebrow='REFERENCE ARCHITECTURE', title='Empire OS', tagline='One person runs 9 governed AI agents on a 2012 Mac mini, with test-gated releases.', stats=[('9', 'governed agents'), ('99/99', 'gate suites at v1.3.0'), ('1,026', 'tests at v1.3.0, 0 failing')]),
+    'empire-os-reference-architecture': dict(eyebrow='REFERENCE ARCHITECTURE', title='Empire OS', tagline='One person runs 9 governed AI agents on a 2012 Mac mini, with test-gated releases.', stats=[('9', 'governed agents'), ('99/99', 'gate suites at v1.3.0'), ('1,026', 'passing tests at v1.3.0')]),
 }
 T = {
     "light": dict(bg1="#ffffff", bg2="#f3f7fb", border="#d1d9e0", fg="#1f2328", dim="#59636e", accent="#0969da", tile="#f6f8fa", tileb="#d1d9e0", num="#1a7f37", glow="#0969da"),

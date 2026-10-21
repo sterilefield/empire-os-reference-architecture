@@ -11,6 +11,11 @@ Sanitised public showcase by Dr. Ravi Teja Thiriveedhi (clinician turned AI syst
 - [docs/release-process.md](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/docs/release-process.md): Spec, AI builder, review, release gate
 - [docs/adr/](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/docs/adr/): Architecture decision records
 
+## Demo
+
+- [Control plane playground](https://sterilefield.github.io/empire-os-reference-architecture/): live demo on invented data
+- [demo/control_plane_sim.py](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/demo/control_plane_sim.py): runnable teaching model, standard library only
+
 ## Optional
 
 - [All showcases](https://github.com/sterilefield): the Sterile Field organisation

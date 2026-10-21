@@ -7,7 +7,7 @@
 Documentation (architecture, decisions, process). A reference for architects and engineering leads who run AI agents on constrained hardware and want governed, test-gated releases.
 
 ## Out of scope
-It is not the engine, not installable software and not a product. It contains no code that runs agents.
+It is not the engine, not installable software and not a product. It contains no code that runs agents; `demo/` and `site/` are small teaching toys written for publication, on invented data.
 
 ## Limitations
 - Figures describe one owner-operated system on one host; they are not benchmarks and may not transfer.

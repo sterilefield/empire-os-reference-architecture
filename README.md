@@ -9,7 +9,7 @@ This repository documents the *architecture* of Empire OS, a self-hosted multi-a
 
 **[Architecture](docs/architecture.md) · [Governance](docs/governance.md) · [Release process](docs/release-process.md) · [ADRs](docs/adr/) · [Trust](TRUST.md) · [All showcases](https://github.com/sterilefield) · [Contact](https://www.linkedin.com/in/dr-ravi-teja-thiriveedhi)**
 
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sterilefield/empire-os-reference-architecture/badge)](https://scorecard.dev/viewer/?uri=github.com/sterilefield/empire-os-reference-architecture)
+[![CI](https://github.com/sterilefield/empire-os-reference-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/sterilefield/empire-os-reference-architecture/actions/workflows/ci.yml) [![Live demo](https://img.shields.io/badge/live_demo-open-1a7f37)](https://sterilefield.github.io/empire-os-reference-architecture/) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sterilefield/empire-os-reference-architecture) [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sterilefield/empire-os-reference-architecture/badge)](https://scorecard.dev/viewer/?uri=github.com/sterilefield/empire-os-reference-architecture)
 
 ## At a glance
 
@@ -98,6 +98,30 @@ Architecture decisions are recorded as ADRs in [docs/adr/](docs/adr/):
 ## What is deliberately not here
 
 The engine, the governor's implementation, agent prompts and configurations, internal dashboards, and every client or clinical module stay private. This repository is released through the five-gate [Sterile Field](https://github.com/sterilefield) release check: allow-list, secret and deny-list scan, fresh history, independent review, owner gate.
+
+## Try it
+
+**[Control plane playground](https://sterilefield.github.io/empire-os-reference-architecture/)**: a release gate that ships only when every suite is green, a memory governor on an 8 GB host and an owner-only kill switch. It runs in your browser on invented data.
+
+<a href="https://sterilefield.github.io/empire-os-reference-architecture/"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/demo-page-dark.png">
+  <img alt="Screenshot of the Control plane playground demo page, showing invented data" src="docs/img/demo-page-light.png" width="100%">
+</picture></a>
+
+Or run the same logic yourself (Python 3, standard library only, nothing to install):
+
+```bash
+git clone https://github.com/sterilefield/empire-os-reference-architecture.git
+cd empire-os-reference-architecture
+python3 demo/control_plane_sim.py
+```
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/demo-terminal-dark.svg">
+  <img alt="Terminal recording of python3 demo/control_plane_sim.py: the real output of the demo" src="docs/img/demo-terminal-light.svg" width="100%">
+</picture>
+
+The terminal image is the real output of that command, rendered by `scripts/term_svg.py`. Everything in `demo/` and `site/` is a toy written for this repository on invented data. It is not production code, and the tests in `tests/` run on every pull request.
 
 ## How this was built
 

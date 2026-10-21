@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control Plane Playground</title>
+<meta name="description" content="Interactive toy of three Empire OS patterns: a test-gated release, a memory governor on an 8 GB host and a kill switch. Invented data; not the real engine.">
+<link rel="stylesheet" href="style.css">
+<style>.suite{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--line)}.mem{display:flex;height:28px;border-radius:6px;overflow:hidden;border:1px solid var(--line);margin-top:8px}.mem div{height:100%;font-size:11px;color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap}
+.agents{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.agent{border:1px solid var(--line);border-radius:8px;padding:8px;text-align:center;font-size:13px}.agent.on{background:var(--okbg);color:var(--ok)}.agent.off{background:var(--badbg);color:var(--bad)}</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Control plane playground</h1>
+  <p>Three patterns from the reference architecture, as small toys you can poke: a release that ships only when every gate suite is green, a memory governor that keeps an 8 GB host alive, and a kill switch that only the owner can undo.</p>
+  <div class="chips"><span class="chip warn">Invented suites, jobs and agents · not the real engine</span><span class="chip">Runs in your browser</span><a class="chip" href="https://github.com/sterilefield/empire-os-reference-architecture">Reference architecture</a></div>
+</header>
+<div class="grid">
+  <section class="card">
+    <h2>1 · Release gate</h2>
+    <p class="dim" style="margin:0 0 6px;font-size:13px">Click a suite to make it fail. One red suite stops the release (ADR-003).</p>
+    <div id="suites"></div>
+    <div id="gate" class="verdict" aria-live="polite"></div>
+    <pre id="evidence" class="mono"></pre>
+  </section>
+  <section class="card">
+    <h2>2 · Memory governor</h2>
+    <p class="dim" style="margin:0 0 6px;font-size:13px">8 GB host, 2 GB reserved for the system and gateway. Non-urgent jobs wait if they would leave less than the free-memory floor.</p>
+    <label for="floor">Free-memory floor: <b id="floorTxt"></b></label><input type="range" id="floor" min="256" max="2048" step="128" value="1024">
+    <div class="mem" id="mem" aria-label="memory use"></div>
+    <div class="row" style="margin-top:10px"><button id="addUrgent">+ urgent job (500 MB)</button><button id="addBatch">+ batch job (900 MB)</button><button id="finish">Finish oldest job</button></div>
+    <pre id="glog" class="mono"></pre>
+  </section>
+  <section class="card wide">
+    <h2>3 · Kill switch</h2>
+    <div class="row"><button class="primary" id="kill">Owner: stop all agents</button><button id="restoreAgent">An agent tries to restore</button><button id="restoreOwner">Owner restores</button><button id="act">An agent tries to act</button></div>
+    <div class="agents" id="agents"></div>
+    <pre id="klog" class="mono"></pre>
+  </section>
+</div>
+<footer>A teaching toy written for this repository. The engine, governor, prompts and configurations stay private. <a href="https://github.com/sterilefield/empire-os-reference-architecture/blob/main/TRUST.md">Scope and limits</a>.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const suites=[["unit-core",140],["unit-routing",62],["config-validate",18],["guard-rules",35],["secret-scan",1],["health-probes",12],["ui-smoke",24],["backup-restore",6]].map(([n,p])=>({n,p,f:0}));
+function gate(){
+  $("suites").innerHTML=suites.map((s,i)=>`<div class="suite"><span class="mono">${s.n}</span><button data-s="${i}" class="${s.f?"bad":"ok"}" style="font-size:12px;padding:2px 10px">${s.f?"✖ "+s.f+" failed":"✔ "+s.p+" passed"}</button></div>`).join("");
+  document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{const s=suites[+b.dataset.s];s.f=s.f?0:1;gate()});
+  const red=suites.filter(s=>s.f),ok=!red.length;
+  $("gate").className="verdict "+(ok?"v-ok":"v-bad");$("gate").textContent=ok?"✔ SHIP: every suite green":"✖ STOP: "+red.map(s=>s.n).join(", ")+" red";
+  $("evidence").textContent=`release: v0.9.0\ngate: ${suites.length-red.length}/${suites.length} suites green\ntests: ${suites.reduce((a,s)=>a+s.p-s.f,0)} passed, ${red.length} failed\ndecision: ${ok?"SHIP":"STOP"}\nrollback: keep v0.8.2 running`;
+}
+gate();
+const TOTAL=8192,RES=2048;let running=[{n:"gateway-agents",mb:2600,u:true}],deferred=[],k=0;const COLORS=["#0969da","#8250df","#bf3989","#1a7f37","#9a6700","#cf222e"];
+const free=()=>TOTAL-RES-running.reduce((a,j)=>a+j.mb,0),floor=()=>+$("floor").value;
+function glog(t){$("glog").textContent=(t+"\n"+$("glog").textContent).split("\n").slice(0,8).join("\n")}
+function submit(j){const after=free()-j.mb;if((j.u&&after>=0)||(!j.u&&after>=floor())){running.push(j);glog("ACT    "+j.n+" "+j.mb+" MB ("+after+" MB free)")}else{deferred.push(j);glog("DEFER  "+j.n+" "+j.mb+" MB queued: "+(j.u?"no room":"would breach the floor"))}mem()}
+function resume(){for(const j of deferred.slice()){if(free()-j.mb>=(j.u?0:floor())){deferred.splice(deferred.indexOf(j),1);running.push(j);glog("ACT    "+j.n+" resumed from the queue")}}}
+function mem(){$("floorTxt").textContent=floor()+" MB";let h=`<div style="width:${RES/TOTAL*100}%;background:#59636e">system</div>`;running.forEach((j,i)=>h+=`<div title="${j.n}" style="width:${j.mb/TOTAL*100}%;background:${COLORS[i%COLORS.length]}">${j.n}</div>`);$("mem").innerHTML=h+`<div style="flex:1;color:var(--dim)">${free()} MB free${deferred.length?" · "+deferred.length+" waiting":""}</div>`}
+$("addUrgent").onclick=()=>submit({n:"urgent-"+(++k),mb:500,u:true});$("addBatch").onclick=()=>submit({n:"batch-"+(++k),mb:900,u:false});
+$("finish").onclick=()=>{const j=running.find(x=>x.n!=="gateway-agents");if(!j){glog("only the gateway is running");return}running.splice(running.indexOf(j),1);glog("done   "+j.n+": memory released");resume();mem()};
+$("floor").oninput=()=>{resume();mem()};submit({n:"nightly-index",mb:1800,u:false});
+let frozen=false;const agents=Array.from({length:9},(_,i)=>"agent-"+(i+1));
+function klog(t){$("klog").textContent=(t+"\n"+$("klog").textContent).split("\n").slice(0,6).join("\n")}
+function fleet(){$("agents").innerHTML=agents.map(a=>`<div class="agent ${frozen?"off":"on"}">${a}<br><small>${frozen?"frozen":"running"}</small></div>`).join("")}
+$("kill").onclick=()=>{frozen=true;klog("KILLED  all 9 agents frozen by the owner (audited)");fleet()};
+$("restoreAgent").onclick=()=>klog(frozen?"DENIED  restore by agent-3: only the owner restores":"nothing to restore");
+$("restoreOwner").onclick=()=>{if(frozen){frozen=false;klog("OK      restored by the owner after reading why it stopped");fleet()}};
+$("act").onclick=()=>klog(frozen?"STOPPED agent-7 tried to act: refused, kill switch is on":"ACT     agent-7 sent its status update");fleet();
+</script>
+</body>
+</html>

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Ravi Teja Thiriveedhi
 """control_plane_sim: a toy model of three patterns from this reference architecture.
 
     python3 demo/control_plane_sim.py          # run all three

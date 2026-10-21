@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Dr. Ravi Teja Thiriveedhi
 """Tests for demo/control_plane_sim.py (standard library unittest)."""
 import io
 import sys

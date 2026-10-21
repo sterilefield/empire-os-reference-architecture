@@ -155,3 +155,5 @@ gh attestation verify verify-latest/empire-os-reference-architecture-*.tar.gz -R
 ## Licence
 
 Documentation in this repository is licensed under [CC BY-NC-ND 4.0](LICENSE): share it with credit, no commercial use, no derivatives.
+
+Code in `demo/`, `tests/`, `scripts/` and `site/` is licensed under [Apache-2.0](LICENSE-CODE), so you can run, adapt and reuse it with attribution. The [NOTICE](NOTICE) file carries the healthcare and safety notice that travels with any copy.

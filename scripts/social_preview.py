@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Dr. Ravi Teja Thiriveedhi
 """Make a repo's 1280×640 social-preview card (navy/teal brand) as SVG, then PNG.
 
 Usage: python3 scripts/social_preview.py "Title" "Outcome line with one number" "tag · tag · tag" [out_dir]

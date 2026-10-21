@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="687" height="651" viewBox="0 0 687 651" role="img" aria-label="demo/control_plane_sim.py">
+<title>demo/control_plane_sim.py</title>
+<style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;white-space:pre}.l{opacity:0;animation:show .01s linear forwards}@keyframes show{to{opacity:1}}@media (prefers-reduced-motion:reduce){.l{animation:none;opacity:1}}</style>
+<rect x=".5" y=".5" width="686" height="650" rx="8" fill="#0d1117" stroke="#30363d"/>
+<path d="M1 30h685" stroke="#30363d"/>
+<rect x="1" y="1" width="685" height="29" rx="7" fill="#161b22"/>
+<circle cx="22" cy="15.0" r="6" fill="#ff5f57"/>
+<circle cx="40" cy="15.0" r="6" fill="#febc2e"/>
+<circle cx="58" cy="15.0" r="6" fill="#28c840"/>
+<text x="343.5" y="19.0" text-anchor="middle" fill="#9198a1">demo/control_plane_sim.py</text>
+<text class="l" style="animation-delay:0.00s" x="16" y="61.2" fill="#9198a1" xml:space="preserve">$ python3 demo/control_plane_sim.py</text>
+<text class="l" style="animation-delay:0.18s" x="16" y="80.2" fill="#e6edf3" xml:space="preserve">Empire OS reference architecture: toy control plane (synthetic, not the real engine)</text>
+<text class="l" style="animation-delay:0.36s" x="16" y="99.2" fill="#e6edf3" xml:space="preserve">1 · Release gate (invented suites)</text>
+<text class="l" style="animation-delay:0.54s" x="16" y="118.2" fill="#e6edf3" xml:space="preserve">   release: v0.9.0</text>
+<text class="l" style="animation-delay:0.72s" x="16" y="137.2" fill="#e6edf3" xml:space="preserve">   gate: 6/6 suites green</text>
+<text class="l" style="animation-delay:0.90s" x="16" y="156.2" fill="#e6edf3" xml:space="preserve">   tests: 225 passed, 0 failed</text>
+<text class="l" style="animation-delay:1.08s" x="16" y="175.2" fill="#3fb950" xml:space="preserve">   decision: SHIP</text>
+<text class="l" style="animation-delay:1.26s" x="16" y="194.2" fill="#e6edf3" xml:space="preserve">   rollback: keep v0.8.2 running</text>
+<text class="l" style="animation-delay:1.44s" x="16" y="213.2" fill="#e6edf3" xml:space="preserve">   ---</text>
+<text class="l" style="animation-delay:1.62s" x="16" y="232.2" fill="#e6edf3" xml:space="preserve">   release: v0.9.1</text>
+<text class="l" style="animation-delay:1.80s" x="16" y="251.2" fill="#e6edf3" xml:space="preserve">   gate: 5/6 suites green</text>
+<text class="l" style="animation-delay:1.98s" x="16" y="270.2" fill="#e6edf3" xml:space="preserve">   tests: 224 passed, 1 failed</text>
+<text class="l" style="animation-delay:2.16s" x="16" y="289.2" fill="#f85149" xml:space="preserve">   decision: STOP (red: suite-f-recovery)</text>
+<text class="l" style="animation-delay:2.34s" x="16" y="308.2" fill="#e6edf3" xml:space="preserve">   rollback: keep v0.9.0 running</text>
+<text class="l" style="animation-delay:2.52s" x="16" y="327.2" fill="#e6edf3" xml:space="preserve">2 · Memory governor on an 8 GB host (invented jobs)</text>
+<text class="l" style="animation-delay:2.70s" x="16" y="346.2" fill="#3fb950" xml:space="preserve">   ACT    gateway-agents     2600 MB urgent, runs now (3544 MB free)</text>
+<text class="l" style="animation-delay:2.88s" x="16" y="365.2" fill="#3fb950" xml:space="preserve">   ACT    nightly-index      1800 MB runs (1744 MB free)</text>
+<text class="l" style="animation-delay:3.06s" x="16" y="384.2" fill="#d29922" xml:space="preserve">   DEFER  report-builder      900 MB would breach the free-memory floor; queued</text>
+<text class="l" style="animation-delay:3.24s" x="16" y="403.2" fill="#3fb950" xml:space="preserve">   ACT    live-intake         500 MB urgent, runs now (1244 MB free)</text>
+<text class="l" style="animation-delay:3.42s" x="16" y="422.2" fill="#d29922" xml:space="preserve">   DEFER  backup-verify       700 MB would breach the free-memory floor; queued</text>
+<text class="l" style="animation-delay:3.60s" x="16" y="441.2" fill="#3fb950" xml:space="preserve">   done   nightly-index           memory released (3044 MB free)</text>
+<text class="l" style="animation-delay:3.78s" x="16" y="460.2" fill="#3fb950" xml:space="preserve">   ACT    report-builder      900 MB resumed from the queue (2144 MB free)</text>
+<text class="l" style="animation-delay:3.96s" x="16" y="479.2" fill="#3fb950" xml:space="preserve">   ACT    backup-verify       700 MB resumed from the queue (1444 MB free)</text>
+<text class="l" style="animation-delay:4.14s" x="16" y="498.2" fill="#e6edf3" xml:space="preserve">3 · Kill switch</text>
+<text class="l" style="animation-delay:4.32s" x="16" y="517.2" fill="#3fb950" xml:space="preserve">   ACT     agent-3 &#x27;write daily summary&#x27;</text>
+<text class="l" style="animation-delay:4.50s" x="16" y="536.2" fill="#f85149" xml:space="preserve">   KILLED  all 9 agents frozen by the owner</text>
+<text class="l" style="animation-delay:4.68s" x="16" y="555.2" fill="#f85149" xml:space="preserve">   STOPPED agent-7 tried &#x27;send status update&#x27;: refused, kill switch is on</text>
+<text class="l" style="animation-delay:4.86s" x="16" y="574.2" fill="#f85149" xml:space="preserve">   DENIED  restore by agent-3: only the owner restores</text>
+<text class="l" style="animation-delay:5.04s" x="16" y="593.2" fill="#3fb950" xml:space="preserve">   OK      restored by owner after reading why it stopped</text>
+<text class="l" style="animation-delay:5.22s" x="16" y="612.2" fill="#3fb950" xml:space="preserve">   ACT     agent-7 &#x27;send status update&#x27;</text>
+<text class="l" style="animation-delay:5.40s" x="16" y="631.2" fill="#e6edf3" xml:space="preserve">   audit: 3 entries, append-only</text>
+</svg>

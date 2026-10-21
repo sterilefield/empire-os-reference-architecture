@@ -4,6 +4,11 @@
 
 This repository documents the *architecture* of Empire OS, a self-hosted multi-agent AI operating system in daily production use. It is a reference, not the engine: it explains the tiers, the governance model, the release process and the trade-offs, so you can apply the patterns to your own system. No engine code, agent prompts, configurations, client data or credentials are published here.
 
+> [!IMPORTANT]
+> **Status:** Sanitised reference architecture of a multi-agent system in daily production use. Last verified 21 Oct 2026. Not for clinical use as-is. Scope and limits: [TRUST.md](TRUST.md).
+
+**[Architecture](docs/architecture.md) · [Governance](docs/governance.md) · [Release process](docs/release-process.md) · [ADRs](docs/adr/) · [Trust](TRUST.md) · [All showcases](https://github.com/sterilefield) · [Contact](https://www.linkedin.com/in/dr-ravi-teja-thiriveedhi)**
+
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sterilefield/empire-os-reference-architecture/badge)](https://scorecard.dev/viewer/?uri=github.com/sterilefield/empire-os-reference-architecture)
 
 ## At a glance
@@ -93,6 +98,19 @@ Architecture decisions are recorded as ADRs in [docs/adr/](docs/adr/):
 ## What is deliberately not here
 
 The engine, the governor's implementation, agent prompts and configurations, internal dashboards, and every client or clinical module stay private. This repository is released through the five-gate [Sterile Field](https://github.com/sterilefield) release check: allow-list, secret and deny-list scan, fresh history, independent review, owner gate.
+
+## How this was built
+
+I write the specifications, architecture, acceptance criteria and review gates; AI coding agents (Claude Code and Codex) write most of the code under those specifications. I own every review, test gate, release decision and production operation. Text in this repository was drafted with AI assistance and passed gate G4, a review by a fresh-context AI agent that did not write it, before my own approval (G5).
+
+## Verify this release
+
+Every release carries a build-provenance attestation for its source archive and an SPDX SBOM.
+
+```bash
+gh release download v0.1.0 -R sterilefield/empire-os-reference-architecture -p 'empire-os-reference-architecture-v0.1.0.tar.gz'
+gh attestation verify empire-os-reference-architecture-v0.1.0.tar.gz -R sterilefield/empire-os-reference-architecture
+```
 
 ## Author
 

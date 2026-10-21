@@ -1,0 +1,17 @@
+# Empire OS: reference architecture
+
+> How one person runs 9 governed AI agents on an 8 GB Mac mini with test-gated releases: tiers, governance model, release process and ADRs.
+
+Sanitised public showcase by Dr. Ravi Teja Thiriveedhi (clinician turned AI systems architect). Scope and limits: [TRUST.md](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/TRUST.md).
+
+## Docs
+
+- [docs/architecture.md](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/docs/architecture.md): The five tiers in detail
+- [docs/governance.md](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/docs/governance.md): Autonomy levels, risk classes, kill switch, audit log
+- [docs/release-process.md](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/docs/release-process.md): Spec, AI builder, review, release gate
+- [docs/adr/](https://github.com/sterilefield/empire-os-reference-architecture/blob/main/docs/adr/): Architecture decision records
+
+## Optional
+
+- [All showcases](https://github.com/sterilefield): the Sterile Field organisation
+- [Author](https://www.linkedin.com/in/dr-ravi-teja-thiriveedhi): LinkedIn

@@ -12,15 +12,15 @@
 <text class="l" style="animation-delay:0.18s" x="16" y="80.2" fill="#1f2328" xml:space="preserve">Empire OS reference architecture: toy control plane (synthetic, not the real engine)</text>
 <text class="l" style="animation-delay:0.36s" x="16" y="99.2" fill="#1f2328" xml:space="preserve">1 · Release gate (invented suites)</text>
 <text class="l" style="animation-delay:0.54s" x="16" y="118.2" fill="#1f2328" xml:space="preserve">   release: v0.9.0</text>
-<text class="l" style="animation-delay:0.72s" x="16" y="137.2" fill="#1f2328" xml:space="preserve">   gate: 8/8 suites green</text>
-<text class="l" style="animation-delay:0.90s" x="16" y="156.2" fill="#1f2328" xml:space="preserve">   tests: 298 passed, 0 failed</text>
+<text class="l" style="animation-delay:0.72s" x="16" y="137.2" fill="#1f2328" xml:space="preserve">   gate: 6/6 suites green</text>
+<text class="l" style="animation-delay:0.90s" x="16" y="156.2" fill="#1f2328" xml:space="preserve">   tests: 225 passed, 0 failed</text>
 <text class="l" style="animation-delay:1.08s" x="16" y="175.2" fill="#1a7f37" xml:space="preserve">   decision: SHIP</text>
 <text class="l" style="animation-delay:1.26s" x="16" y="194.2" fill="#1f2328" xml:space="preserve">   rollback: keep v0.8.2 running</text>
 <text class="l" style="animation-delay:1.44s" x="16" y="213.2" fill="#1f2328" xml:space="preserve">   ---</text>
 <text class="l" style="animation-delay:1.62s" x="16" y="232.2" fill="#1f2328" xml:space="preserve">   release: v0.9.1</text>
-<text class="l" style="animation-delay:1.80s" x="16" y="251.2" fill="#1f2328" xml:space="preserve">   gate: 7/8 suites green</text>
-<text class="l" style="animation-delay:1.98s" x="16" y="270.2" fill="#1f2328" xml:space="preserve">   tests: 297 passed, 1 failed</text>
-<text class="l" style="animation-delay:2.16s" x="16" y="289.2" fill="#cf222e" xml:space="preserve">   decision: STOP (red: backup-restore)</text>
+<text class="l" style="animation-delay:1.80s" x="16" y="251.2" fill="#1f2328" xml:space="preserve">   gate: 5/6 suites green</text>
+<text class="l" style="animation-delay:1.98s" x="16" y="270.2" fill="#1f2328" xml:space="preserve">   tests: 224 passed, 1 failed</text>
+<text class="l" style="animation-delay:2.16s" x="16" y="289.2" fill="#cf222e" xml:space="preserve">   decision: STOP (red: suite-f-recovery)</text>
 <text class="l" style="animation-delay:2.34s" x="16" y="308.2" fill="#1f2328" xml:space="preserve">   rollback: keep v0.9.0 running</text>
 <text class="l" style="animation-delay:2.52s" x="16" y="327.2" fill="#1f2328" xml:space="preserve">2 · Memory governor on an 8 GB host (invented jobs)</text>
 <text class="l" style="animation-delay:2.70s" x="16" y="346.2" fill="#1a7f37" xml:space="preserve">   ACT    gateway-agents     2600 MB urgent, runs now (3544 MB free)</text>

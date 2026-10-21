@@ -45,10 +45,9 @@ def release_gate(version: str, previous: str, suites: list[Suite]) -> tuple[bool
     return ok, "\n".join(lines)
 
 
-DEMO_SUITES = [
-    Suite("unit-core", 140), Suite("unit-routing", 62), Suite("config-validate", 18),
-    Suite("guard-rules", 35), Suite("secret-scan", 1), Suite("health-probes", 12),
-    Suite("ui-smoke", 24), Suite("backup-restore", 6),
+DEMO_SUITES = [  # invented suite names and counts
+    Suite("suite-a-unit", 120), Suite("suite-b-integration", 40), Suite("suite-c-policy", 21),
+    Suite("suite-d-security", 9), Suite("suite-e-ui", 30), Suite("suite-f-recovery", 5),
 ]
 
 # ---------------------------------------------------------------- 2. memory governor
@@ -64,7 +63,7 @@ class Job:
 @dataclass
 class Governor:
     total_mb: int = 8192
-    reserved_mb: int = 2048  # operating system and the always-on gateway
+    reserved_mb: int = 2048  # invented: operating system and an always-on service
     floor_mb: int = 1024     # below this much free memory, non-urgent work waits
     running: list[Job] = field(default_factory=list)
     deferred: list[Job] = field(default_factory=list)
@@ -131,7 +130,7 @@ def demo_gate() -> None:
     print("1 · Release gate (invented suites)")
     ok, ev = release_gate("v0.9.0", "v0.8.2", DEMO_SUITES)
     print("   " + ev.replace("\n", "\n   "))
-    broken = DEMO_SUITES[:-1] + [Suite("backup-restore", 5, 1)]
+    broken = DEMO_SUITES[:-1] + [Suite("suite-f-recovery", 4, 1)]
     ok2, ev2 = release_gate("v0.9.1", "v0.9.0", broken)
     print("   ---")
     print("   " + ev2.replace("\n", "\n   "))

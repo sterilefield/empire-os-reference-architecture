@@ -22,30 +22,30 @@
     <p class="dim" style="margin:0 0 6px;font-size:13px">Click a suite to make it fail. One red suite stops the release (ADR-003).</p>
     <div id="suites"></div>
     <div id="gate" class="verdict" aria-live="polite"></div>
-    <pre id="evidence" class="mono"></pre>
+    <pre id="evidence" class="mono" aria-live="polite"></pre>
   </section>
   <section class="card">
     <h2>2 · Memory governor</h2>
-    <p class="dim" style="margin:0 0 6px;font-size:13px">8 GB host, 2 GB reserved for the system and gateway. Non-urgent jobs wait if they would leave less than the free-memory floor.</p>
+    <p class="dim" style="margin:0 0 6px;font-size:13px">8 GB host, 2 GB reserved for the system (an invented figure). Non-urgent jobs wait if they would leave less than the free-memory floor.</p>
     <label for="floor">Free-memory floor: <b id="floorTxt"></b></label><input type="range" id="floor" min="256" max="2048" step="128" value="1024">
-    <div class="mem" id="mem" aria-label="memory use"></div>
+    <div class="mem" id="mem" role="img" aria-label="memory use"></div><div class="dim mono" id="memTxt" style="font-size:12px;margin-top:4px" aria-live="polite"></div>
     <div class="row" style="margin-top:10px"><button id="addUrgent">+ urgent job (500 MB)</button><button id="addBatch">+ batch job (900 MB)</button><button id="finish">Finish oldest job</button></div>
-    <pre id="glog" class="mono"></pre>
+    <pre id="glog" class="mono" aria-live="polite"></pre>
   </section>
   <section class="card wide">
     <h2>3 · Kill switch</h2>
     <div class="row"><button class="primary" id="kill">Owner: stop all agents</button><button id="restoreAgent">An agent tries to restore</button><button id="restoreOwner">Owner restores</button><button id="act">An agent tries to act</button></div>
     <div class="agents" id="agents"></div>
-    <pre id="klog" class="mono"></pre>
+    <pre id="klog" class="mono" aria-live="polite"></pre>
   </section>
 </div>
-<footer>A teaching toy written for this repository. The engine, governor, prompts and configurations stay private. <a href="https://github.com/sterilefield/empire-os-reference-architecture/blob/main/TRUST.md">Scope and limits</a>.</footer>
+<footer>A teaching toy written for this repository, not for clinical use. The engine, governor, prompts and configurations stay private. <a href="https://github.com/sterilefield/empire-os-reference-architecture/blob/main/TRUST.md">Scope and limits</a>.</footer>
 </main>
 <script>
 const $=id=>document.getElementById(id);
-const suites=[["unit-core",140],["unit-routing",62],["config-validate",18],["guard-rules",35],["secret-scan",1],["health-probes",12],["ui-smoke",24],["backup-restore",6]].map(([n,p])=>({n,p,f:0}));
+const suites=[["suite-a-unit",120],["suite-b-integration",40],["suite-c-policy",21],["suite-d-security",9],["suite-e-ui",30],["suite-f-recovery",5]].map(([n,p])=>({n,p,f:0}));
 function gate(){
-  $("suites").innerHTML=suites.map((s,i)=>`<div class="suite"><span class="mono">${s.n}</span><button data-s="${i}" class="${s.f?"bad":"ok"}" style="font-size:12px;padding:2px 10px">${s.f?"✖ "+s.f+" failed":"✔ "+s.p+" passed"}</button></div>`).join("");
+  $("suites").innerHTML=suites.map((s,i)=>`<div class="suite"><span class="mono">${s.n}</span><button data-s="${i}" aria-pressed="${s.f?"true":"false"}" aria-label="${s.n}: ${s.f?"failing, click to pass":"passing, click to fail"}" class="${s.f?"bad":"ok"}" style="font-size:12px;padding:2px 10px">${s.f?"✖ "+s.f+" failed":"✔ "+s.p+" passed"}</button></div>`).join("");
   document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{const s=suites[+b.dataset.s];s.f=s.f?0:1;gate()});
   const red=suites.filter(s=>s.f),ok=!red.length;
   $("gate").className="verdict "+(ok?"v-ok":"v-bad");$("gate").textContent=ok?"✔ SHIP: every suite green":"✖ STOP: "+red.map(s=>s.n).join(", ")+" red";
@@ -57,7 +57,7 @@ const free=()=>TOTAL-RES-running.reduce((a,j)=>a+j.mb,0),floor=()=>+$("floor").v
 function glog(t){$("glog").textContent=(t+"\n"+$("glog").textContent).split("\n").slice(0,8).join("\n")}
 function submit(j){const after=free()-j.mb;if((j.u&&after>=0)||(!j.u&&after>=floor())){running.push(j);glog("ACT    "+j.n+" "+j.mb+" MB ("+after+" MB free)")}else{deferred.push(j);glog("DEFER  "+j.n+" "+j.mb+" MB queued: "+(j.u?"no room":"would breach the floor"))}mem()}
 function resume(){for(const j of deferred.slice()){if(free()-j.mb>=(j.u?0:floor())){deferred.splice(deferred.indexOf(j),1);running.push(j);glog("ACT    "+j.n+" resumed from the queue")}}}
-function mem(){$("floorTxt").textContent=floor()+" MB";let h=`<div style="width:${RES/TOTAL*100}%;background:#59636e">system</div>`;running.forEach((j,i)=>h+=`<div title="${j.n}" style="width:${j.mb/TOTAL*100}%;background:${COLORS[i%COLORS.length]}">${j.n}</div>`);$("mem").innerHTML=h+`<div style="flex:1;color:var(--dim)">${free()} MB free${deferred.length?" · "+deferred.length+" waiting":""}</div>`}
+function mem(){$("floorTxt").textContent=floor()+" MB";let h=`<div style="width:${RES/TOTAL*100}%;background:#59636e">system</div>`;running.forEach((j,i)=>h+=`<div title="${j.n}" style="width:${j.mb/TOTAL*100}%;background:${COLORS[i%COLORS.length]}">${j.n}</div>`);$("mem").innerHTML=h+`<div style="flex:1"></div>`;$("memTxt").textContent=free()+" MB free"+(deferred.length?" · "+deferred.length+" waiting":"");$("mem").setAttribute("aria-label","memory use: "+free()+" MB free")}
 $("addUrgent").onclick=()=>submit({n:"urgent-"+(++k),mb:500,u:true});$("addBatch").onclick=()=>submit({n:"batch-"+(++k),mb:900,u:false});
 $("finish").onclick=()=>{const j=running.find(x=>x.n!=="gateway-agents");if(!j){glog("only the gateway is running");return}running.splice(running.indexOf(j),1);glog("done   "+j.n+": memory released");resume();mem()};
 $("floor").oninput=()=>{resume();mem()};submit({n:"nightly-index",mb:1800,u:false});
